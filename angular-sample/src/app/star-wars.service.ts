@@ -1,6 +1,8 @@
 
 import {Injectable} from '@angular/core';
 import {LogService} from './log.service';
+import { Subject } from 'rxjs';
+import { Http } from '@angular/http';
 
 @Injectable()
 
@@ -10,8 +12,12 @@ export class StarWarsService {
     { name: 'Darth Vader', side: '' }
   ];
   private logService: LogService;
-  constructor(logService: LogService) {
+  charactersChanged = new Subject<void>();
+  http: Http;
+
+  constructor(logService: LogService, http: Http) {
     this.logService = logService;
+    this.http = http;
    }
   getCharacters(chosenList) {
     if (chosenList === 'all') {
@@ -27,6 +33,7 @@ export class StarWarsService {
       return char.name === charInfo.name;
     });
     this.characters[pos].side = charInfo.side;
+    this.charactersChanged.next();
     this.logService.writeLog('character side has chaanged to:' + charInfo.name + 'side :' + charInfo.side);
   }
 
