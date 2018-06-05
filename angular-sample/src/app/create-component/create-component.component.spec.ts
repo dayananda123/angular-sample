@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateComponentComponent } from './create-component.component';
+import {FormsModule} from '@angular/forms';
 
 describe('CreateComponentComponent', () => {
   let component: CreateComponentComponent;

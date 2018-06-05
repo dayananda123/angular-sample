@@ -12,6 +12,7 @@ export class CreateComponentComponent implements OnInit {
   {display: 'Light', value: 'light'},
 {display: 'Dark', value: 'dark'}
 ];
+defaultName = 'obi-wan';
 swService: StarWarsService;
   constructor(swService: StarWarsService) {
     this.swService = swService;
